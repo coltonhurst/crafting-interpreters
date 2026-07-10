@@ -1,4 +1,6 @@
-![lotr starting a journey image](./journey.jpg)
+<p align="center">
+    <img src="./journey.jpg" />
+</p>
 
 # My Journey Through Crafting Interpreters
 
