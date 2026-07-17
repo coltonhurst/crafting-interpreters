@@ -26,10 +26,13 @@ To add to this... according to [Crafting Crafting Interpreters](https://journal.
 
 ### 2. Get a “Hello, world!” program written and running in Java. Set up whatever makefiles or IDE projects you need to get it working. If you have a debugger, get comfortable with it and step through your program as it runs.
 
-- I'll be using Rust, at least for the interpreter in the book
-- The hello world program (using Cargo as the build system) is [here](./hello-world/main.rs)
-- I've debugged the hello world program, for now I'll use the Zed editor which has a debugger built in.
+Note: I'll be using Rust, at least for the interpreter part of the book
+
+- The hello world program (using Cargo as the build system) is [here](./hello-world-rust/main.rs)
+- I've debugged the hello world program, for now I'll use the Zed editor which has a debugger built in
 
 ### Do the same thing for C. To get some practice with pointers, define a doubly linked list of heap-allocated strings. Write functions to insert, find, and delete items from it. Test them.
 
-to do
+- The hello world program is [here](./hello-world-c/main.c)
+- I am building with `clang -g` and debugging with Zed (see [debug.json](./.zed/debug.json))
+- `DoublyLinkedStringList` implemented [here](./doubly-linked-list/main.c)
