@@ -34,5 +34,5 @@ Note: I'll be using Rust, at least for the interpreter part of the book
 ### Do the same thing for C. To get some practice with pointers, define a doubly linked list of heap-allocated strings. Write functions to insert, find, and delete items from it. Test them.
 
 - The hello world program is [here](./hello-world-c/main.c)
-- I am building with `clang -g` and debugging with Zed (see [debug.json](../.zed/debug.json))
+- I am building with `clang -g` and debugging with Zed (see [debug.json](../../.zed/debug.json))
 - `DoublyLinkedStringList` implemented [here](./doubly-linked-list/main.c)
