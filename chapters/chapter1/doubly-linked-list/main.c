@@ -135,7 +135,7 @@ int eq(char* a, char* b) {
     int aLen = strlen(a);
     int bLen = strlen(b);
 
-    if (a != b) {
+    if (aLen != bLen) {
         return 0;
     }
 
@@ -146,6 +146,45 @@ int eq(char* a, char* b) {
     }
 
     return 1;
+}
+
+/*
+    Find the given string in the list.
+    Returns the number of matches.
+*/
+int find(struct DoublyLinkedStringList* list, char str[]) {
+    // Escape early if list or str are bad
+    if (list->head == NULL || strlen(str) == 0) {
+        return 0;
+    }
+
+    struct Node* currentNode = list->head;
+    int occurrences = 0;
+
+    // Search the first node
+    if (eq(str, currentNode->str)) {
+        occurrences++;
+    }
+
+    // Escape case for only 1 node
+    if (currentNode->next == NULL) {
+        return occurrences;
+    }
+
+    // Proceed one step in the list, we know there are at
+    // least 2 nodes
+    currentNode = currentNode->next;
+
+    // Loop through the remaining nodes
+    while (currentNode != list->head) {
+        if (eq(str, currentNode->str)) {
+            occurrences++;
+        }
+
+        currentNode = currentNode->next;
+    }
+
+    return occurrences;
 }
 
 /*
@@ -204,12 +243,16 @@ int main() {
 
     struct DoublyLinkedStringList list = new();
     insert(&list, "apple");
+    insert(&list, "mango");
     insert(&list, "banana");
     insert(&list, "watermelon");
     insert(&list, "mango");
     insert(&list, "lime");
 
     print(&list);
+
+    int occurrences = find(&list, "mango");
+    printf("mango was found %d time(s)", occurrences);
 
     return 0;
 }
