@@ -104,25 +104,6 @@ void insert(struct DoublyLinkedStringList* list, char str[]) {
         list->head->previous->next = n;
         list->head->previous = n;
     }
-
-    // This is not the first node, so find the last node.
-    // TRAVERSAL CODE
-    /*struct Node* traversalNode = list->head;
-    int keepTraversing = 1;
-
-    while (keepTraversing) {
-        if (traversalNode->next != NULL) {
-            traversalNode++;
-        } else {
-            keepTraversing = 0;
-        }
-    }
-
-    // `currentNode` should now point to the last node,
-    // so "append" our new node `n`.
-    traversalNode->next = n;
-    n->previous = traversalNode;
-    */
 }
 
 /*
