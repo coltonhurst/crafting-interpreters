@@ -126,6 +126,29 @@ void insert(struct DoublyLinkedStringList* list, char str[]) {
 }
 
 /*
+    Compares two strings on the heap to see if
+    they are equivalent, char by char.
+
+    Returns 1 for true (equal), 0 for false (not equal).
+*/
+int eq(char* a, char* b) {
+    int aLen = strlen(a);
+    int bLen = strlen(b);
+
+    if (a != b) {
+        return 0;
+    }
+
+    for (int i = 0; i < aLen; i++) {
+        if (a[i] != b[i]) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+/*
     Print all nodes in the list provided.
 */
 void print(struct DoublyLinkedStringList* list) {
