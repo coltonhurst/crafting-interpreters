@@ -169,6 +169,76 @@ int find(struct DoublyLinkedStringList* list, char str[]) {
 }
 
 /*
+    Find the given string in the list,
+    and remove the first occurrence.
+*/
+void delete(struct DoublyLinkedStringList* list, char str[]) {
+    // Escape early if list or str are bad
+    if (list->head == NULL || strlen(str) == 0) {
+        return;
+    }
+
+    struct Node* currentNode = list->head;
+
+    // If there is only one node in the list,
+    // check it.
+    if (currentNode->next == NULL) {
+        // If it matches, remove it
+        if (eq(str, currentNode->str)) {
+            free(currentNode);
+            list->head = NULL;
+            return;
+        }
+    }
+
+    // Handle special case where there are only two nodes
+    // in the list. Check both in that case.
+    if (currentNode->next->next == currentNode) {
+        // see if the first node matches
+        if (eq(str, currentNode->str)) {
+            // Remove the current and leave the other
+            list->head = currentNode->next;
+            list->head->next = NULL;
+            list->head->previous = NULL;
+            free(currentNode);
+            return;
+        }
+        // see if the 2nd node matches
+        else if (eq(str, currentNode->next->str)) {
+            // Remove the next and leave the current
+            list->head->next = NULL;
+            list->head->previous = NULL;
+            free(currentNode->next);
+            return;
+        }
+    }
+
+    // At this point, all we know is there are >= 3 nodes
+    // in the list. None have been checked yet.
+    // Check the first
+    if (eq(str, currentNode->str)) {
+        currentNode->previous->next = currentNode->next;
+        currentNode->next->previous = currentNode->previous;
+        free(currentNode);
+        return;
+    }
+
+    // Increment so we start this search with the 2nd node
+    currentNode = currentNode->next;
+
+    // Search
+    while (currentNode != list->head) {
+        if (eq(str, currentNode->str)) {
+            currentNode->previous->next = currentNode->next;
+            currentNode->next->previous = currentNode->previous;
+            free(currentNode);
+            return;
+        }
+        currentNode = currentNode->next;
+    }
+}
+
+/*
     Print all nodes in the list provided.
 */
 void print(struct DoublyLinkedStringList* list) {
@@ -233,7 +303,13 @@ int main() {
     print(&list);
 
     int occurrences = find(&list, "mango");
-    printf("mango was found %d time(s)", occurrences);
+    printf("mango was found %d time(s)\n", occurrences);
+
+    printf("... eating one mango\n");
+    delete(&list, "mango");
+
+    int occurrencesAgain = find(&list, "mango");
+    printf("mango was found %d time(s)", occurrencesAgain);
 
     return 0;
 }
