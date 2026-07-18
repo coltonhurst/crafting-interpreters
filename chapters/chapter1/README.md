@@ -36,3 +36,4 @@ Note: I'll be using Rust, at least for the interpreter part of the book
 - The hello world program is [here](./hello-world-c/main.c)
 - I am building with `clang -g` and debugging with Zed (see [debug.json](../../.zed/debug.json))
 - `DoublyLinkedStringList` implemented [here](./doubly-linked-list/main.c)
+  - This file has been decently tested. Please note that I wrote this (by hand) using no resources except a search here and there to remind myself the appropriate C syntax for something. Additionally, I know it's written very poorly, I didn't take the time to do it The Right Way™). I'm just really excited to start on the next chapter and really start working on the language implementations!
