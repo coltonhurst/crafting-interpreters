@@ -185,6 +185,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
     if (currentNode->next == NULL) {
         // If it matches, remove it
         if (eq(str, currentNode->str)) {
+            free(currentNode->str);
             free(currentNode);
             list->head = NULL;
             return;
@@ -200,6 +201,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
             list->head = currentNode->next;
             list->head->next = NULL;
             list->head->previous = NULL;
+            free(currentNode->str);
             free(currentNode);
             return;
         }
@@ -208,6 +210,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
             // Remove the next and leave the current
             list->head->next = NULL;
             list->head->previous = NULL;
+            free(currentNode->str);
             free(currentNode->next);
             return;
         }
@@ -219,6 +222,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
     if (eq(str, currentNode->str)) {
         currentNode->previous->next = currentNode->next;
         currentNode->next->previous = currentNode->previous;
+        free(currentNode->str);
         free(currentNode);
         return;
     }
@@ -231,6 +235,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
         if (eq(str, currentNode->str)) {
             currentNode->previous->next = currentNode->next;
             currentNode->next->previous = currentNode->previous;
+            free(currentNode->str);
             free(currentNode);
             return;
         }
