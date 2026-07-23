@@ -2,9 +2,9 @@
     <img src="./journey.jpg" />
 </p>
 
-# My Journey Through Crafting Interpreters
+# My Journey through Crafting Interpreters
 
-this repository contains my journey through crafting interpreters
+This repository contains my journey through crafting interpreters.
 
 ## Chapters
 
