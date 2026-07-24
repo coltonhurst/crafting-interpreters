@@ -103,29 +103,6 @@ void insert(struct DoublyLinkedStringList* list, char str[]) {
 }
 
 /*
-    Compares two strings on the heap to see if
-    they are equivalent, char by char.
-
-    Returns 1 for true (equal), 0 for false (not equal).
-*/
-int eq(char* a, char* b) {
-    int aLen = strlen(a);
-    int bLen = strlen(b);
-
-    if (aLen != bLen) {
-        return 0;
-    }
-
-    for (int i = 0; i < aLen; i++) {
-        if (a[i] != b[i]) {
-            return 0;
-        }
-    }
-
-    return 1;
-}
-
-/*
     Find the given string in the list.
     Returns the number of matches.
 */
@@ -139,7 +116,7 @@ int find(struct DoublyLinkedStringList* list, char str[]) {
     int occurrences = 0;
 
     // Search the first node
-    if (eq(str, currentNode->str)) {
+    if (strcmp(str, currentNode->str) == 0) {
         occurrences++;
     }
 
@@ -154,7 +131,7 @@ int find(struct DoublyLinkedStringList* list, char str[]) {
 
     // Loop through the remaining nodes
     while (currentNode != list->head) {
-        if (eq(str, currentNode->str)) {
+        if (strcmp(str, currentNode->str) == 0) {
             occurrences++;
         }
 
@@ -180,7 +157,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
     // check it.
     if (currentNode->next == NULL) {
         // If it matches, remove it
-        if (eq(str, currentNode->str)) {
+        if (strcmp(str, currentNode->str) == 0) {
             free(currentNode->str);
             free(currentNode);
             list->head = NULL;
@@ -192,7 +169,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
     // in the list. Check both in that case.
     if (currentNode->next->next == currentNode) {
         // see if the first node matches
-        if (eq(str, currentNode->str)) {
+        if (strcmp(str, currentNode->str) == 0) {
             // Remove the current and leave the other
             list->head = currentNode->next;
             list->head->next = NULL;
@@ -202,7 +179,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
             return;
         }
         // see if the 2nd node matches
-        else if (eq(str, currentNode->next->str)) {
+        else if (strcmp(str, currentNode->next->str) == 0) {
             // Remove the next and leave the current
             list->head->next = NULL;
             list->head->previous = NULL;
@@ -215,7 +192,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
     // At this point, all we know is there are >= 3 nodes
     // in the list. None have been checked yet.
     // Check the first
-    if (eq(str, currentNode->str)) {
+    if (strcmp(str, currentNode->str) == 0) {
         currentNode->previous->next = currentNode->next;
         currentNode->next->previous = currentNode->previous;
         free(currentNode->str);
@@ -228,7 +205,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
 
     // Search
     while (currentNode != list->head) {
-        if (eq(str, currentNode->str)) {
+        if (strcmp(str, currentNode->str) == 0) {
             currentNode->previous->next = currentNode->next;
             currentNode->next->previous = currentNode->previous;
             free(currentNode->str);
