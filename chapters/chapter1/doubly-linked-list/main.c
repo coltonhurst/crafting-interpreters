@@ -68,12 +68,8 @@ void insert(struct DoublyLinkedStringList* list, char str[]) {
     // worry about that for this little program.
     char* heapStr = (char*) malloc(sizeof(char) * strLen);
 
-    // Fill heapStr with the char values from `str`,
-    // and add the null terminating character.
-    for (int i = 0; i < strLen - 1; i++) {
-        heapStr[i] = str[i];
-    }
-    heapStr[strLen] = '\0';
+    // Copy str to heapStr
+    strcpy(heapStr, str);
 
     // Initialize the Node we will insert,
     // and set the `str` value.
