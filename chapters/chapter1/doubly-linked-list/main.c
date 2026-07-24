@@ -193,12 +193,7 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
     // in the list. None have been checked yet.
     // Check the first
     if (strcmp(str, currentNode->str) == 0) {
-        // If the node we are deleting is list->head,
-        // point list->head to the next node.
-        if (currentNode == list->head) {
-            list->head = currentNode->next;
-        }
-
+        list->head = currentNode->next;
         currentNode->previous->next = currentNode->next;
         currentNode->next->previous = currentNode->previous;
 
@@ -241,12 +236,7 @@ void print(struct DoublyLinkedStringList* list) {
         printf("Node #%d\n", count);
         printf("  previous: %p\n", currentNode->previous);
         printf("   current: %p\n", currentNode);
-        printf("       str: ");
-        int len = strlen(currentNode->str);
-        for (int i = 0; i < len; i++) {
-            printf("%c", currentNode->str[i]);
-        }
-        printf("\n");
+        printf("       str: %s\n", currentNode->str);
         printf("      next: %p\n", currentNode->next);
     }
 
@@ -258,12 +248,7 @@ void print(struct DoublyLinkedStringList* list) {
         printf("Node #%d\n", count);
         printf("  previous: %p\n", currentNode->previous);
         printf("   current: %p\n", currentNode);
-        printf("       str: ");
-        int len = strlen(currentNode->str);
-        for (int i = 0; i < len; i++) {
-            printf("%c", currentNode->str[i]);
-        }
-        printf("\n");
+        printf("       str: %s\n", currentNode->str);
         printf("      next: %p\n", currentNode->next);
 
         currentNode = currentNode->next;
