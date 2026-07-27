@@ -162,6 +162,8 @@ void delete(struct DoublyLinkedStringList* list, char str[]) {
             free(currentNode);
             list->head = NULL;
             return;
+        } else {
+            return;
         }
     }
 
