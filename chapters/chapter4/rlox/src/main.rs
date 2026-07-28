@@ -26,7 +26,7 @@ fn main() {
         let result = run_file(source_path);
 
         if let Err(e) = result {
-            eprintln!("Error: There was an issue reading the file.\n{:?}", e);
+            eprintln!("Error: There was an issue reading the file\n{:?}", e);
         }
     } else {
         run_prompt();
