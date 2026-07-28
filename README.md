@@ -4,7 +4,7 @@
 
 # My Journey through Crafting Interpreters
 
-This repository contains my journey through crafting interpreters.
+This repository contains my journey through [Crafting Interpreters](https://craftinginterpreters.com).
 
 ## Chapters
 
