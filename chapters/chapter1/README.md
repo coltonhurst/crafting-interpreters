@@ -1,4 +1,4 @@
-# Notes
+# Chapter 1 Notes
 
 I've been waiting a long time to go through this book. Now I'm waiting no longer - time to enjoy!
 
