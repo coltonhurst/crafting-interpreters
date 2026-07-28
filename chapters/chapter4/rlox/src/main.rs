@@ -49,8 +49,6 @@ fn run_prompt() {
     let stdin = io::stdin();
     let mut stdout = io::stdout();
 
-    println!("here");
-
     loop {
         print!("> ");
         _ = stdout.flush();
