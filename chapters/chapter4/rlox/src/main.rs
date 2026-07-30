@@ -5,8 +5,14 @@ use std::io::Write;
 use std::path::Path;
 use std::process;
 
+// Exit codes from sysexits.h
+// https://www.man7.org/linux/man-pages/man3/sysexits.h.3head.html
 const EXIT_CODE_SUCCESS: i32 = 0;
 const EXIT_CODE_INCORRECT_USAGE: i32 = 64;
+const EXIT_CODE_FORMAT_ERROR: i32 = 65;
+
+// Stores if there was an error
+static mut HAD_ERROR: bool = false;
 
 // The main entry point for rlox
 fn main() {
@@ -41,6 +47,12 @@ fn run_file(p: &Path) -> Result<(), io::Error> {
     let f = fs::read_to_string(p)?;
     run(f);
 
+    unsafe {
+        if HAD_ERROR {
+            process::exit(EXIT_CODE_FORMAT_ERROR);
+        }
+    }
+
     Ok(())
 }
 
@@ -59,7 +71,13 @@ fn run_prompt() {
                 println!("\nExiting via Ctrl-D");
                 break;
             }
-            Ok(_) => run(input),
+            Ok(_) => {
+                run(input);
+
+                unsafe {
+                    HAD_ERROR = false;
+                }
+            }
             Err(e) => {
                 println!("\nError: {:?}", e);
                 break;
@@ -74,5 +92,19 @@ fn run(source: String) {
 
     for token in tokens {
         println!("{:?}", token);
+    }
+}
+
+#[allow(dead_code)]
+fn error(line: i32, message: String) {
+    report(line, String::new(), message);
+}
+
+#[allow(dead_code)]
+fn report(line: i32, location: String, message: String) {
+    eprintln!("[line {:?}] Error {:?}: {:?}", line, location, message);
+
+    unsafe {
+        HAD_ERROR = true;
     }
 }
