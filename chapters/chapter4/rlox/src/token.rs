@@ -1,7 +1,6 @@
 use crate::token_type::TokenType;
 
-#[allow(dead_code)]
-struct Token {
+pub struct Token {
     token_type: TokenType,
     lexeme: String,
     literal: String,
@@ -9,7 +8,6 @@ struct Token {
 }
 
 impl Token {
-    #[allow(dead_code)]
     fn new(token_type: TokenType, lexeme: String, literal: String, line: i32) -> Self {
         Self {
             token_type,

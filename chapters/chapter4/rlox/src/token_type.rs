@@ -1,4 +1,3 @@
-#[allow(dead_code)]
 pub enum TokenType {
     // Single-character tokens
     LeftParen,

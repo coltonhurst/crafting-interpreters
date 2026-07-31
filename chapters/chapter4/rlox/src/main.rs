@@ -5,6 +5,7 @@ use std::io::Write;
 use std::path::Path;
 use std::process;
 
+mod scanner;
 mod token;
 mod token_type;
 
@@ -98,12 +99,10 @@ fn run(source: String) {
     }
 }
 
-#[allow(dead_code)]
 fn error(line: i32, message: String) {
     report(line, String::new(), message);
 }
 
-#[allow(dead_code)]
 fn report(line: i32, location: String, message: String) {
     eprintln!("[line {:?}] Error {:?}: {:?}", line, location, message);
 
