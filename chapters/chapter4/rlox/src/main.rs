@@ -5,6 +5,8 @@ use std::io::Write;
 use std::path::Path;
 use std::process;
 
+mod token_type;
+
 // Exit codes from sysexits.h
 // https://www.man7.org/linux/man-pages/man3/sysexits.h.3head.html
 const EXIT_CODE_SUCCESS: i32 = 0;
