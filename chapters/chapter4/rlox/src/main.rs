@@ -5,6 +5,7 @@ use std::io::Write;
 use std::path::Path;
 use std::process;
 
+mod token;
 mod token_type;
 
 // Exit codes from sysexits.h
